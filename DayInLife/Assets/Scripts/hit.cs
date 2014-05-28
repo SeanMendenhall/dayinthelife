@@ -7,7 +7,7 @@ public class hit : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+	// austin's comment
 	// Update is called once per frame
 	void Update () {
 	
