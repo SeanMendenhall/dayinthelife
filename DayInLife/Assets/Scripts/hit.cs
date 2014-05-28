@@ -17,7 +17,7 @@ public class hit : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Fist")
 		{
-			Debug.Log ("destroy this.");
+			Destroy (gameObject);
 		}
 	}
 }
