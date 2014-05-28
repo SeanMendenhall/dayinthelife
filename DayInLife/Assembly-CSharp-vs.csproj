@@ -46,9 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\control_enemy.cs" />
      <Compile Include="Assets\Scripts\control_game.cs" />
      <Compile Include="Assets\Scripts\control_player.cs" />
+     <Compile Include="Assets\Scripts\enemyHealth.cs" />
      <Compile Include="Assets\Scripts\hit.cs" />
+     <Compile Include="Assets\Scripts\playerHealth.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

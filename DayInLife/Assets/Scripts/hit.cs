@@ -2,10 +2,9 @@
 using System.Collections;
 
 public class hit : MonoBehaviour {
-
+	public GameObject enemy;
 	// Use this for initialization
 	void Start () {
-	
 	}
 	// austin's comment
 	// Update is called once per frame
@@ -17,7 +16,7 @@ public class hit : MonoBehaviour {
 	{
 		if (coll.gameObject.tag == "Fist")
 		{
-			Destroy (gameObject);
+			enemy.GetComponent<control_enemy>().enemyHealth -= 1f;
 		}
 	}
 }

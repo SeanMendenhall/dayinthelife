@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Timers;
 
 public class control_player : MonoBehaviour {
 	[HideInInspector]
@@ -16,12 +18,20 @@ public class control_player : MonoBehaviour {
 
 	private Animator anim;
 
+	public bool gameStarted = false;
+	public float playerHealth = 100f;
 	
 	// Use this for initialization
 	void Awake()
 	{
 		Grounded = transform.Find ("Grounded");
 		anim = GetComponent<Animator> ();
+
+	}
+
+	void Start()
+	{
+
 	}
 
 	void Update () {
@@ -29,39 +39,45 @@ public class control_player : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.W) && grounded)
 			jump = true;
+
+
+
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		if (Input.GetKey (KeyCode.D) && rigidbody2D.velocity.x < maxSpeed) 
+		if(gameStarted)
 		{
-			rigidbody2D.AddForce (Vector2.right * moveForce);
-			if(facingLeft)
-				Flip();
-		}
+			if (Input.GetKey (KeyCode.D) && rigidbody2D.velocity.x < maxSpeed) 
+			{
+				rigidbody2D.AddForce (Vector2.right * moveForce);
+				if(facingLeft)
+					Flip();
+			}
 
-		if (Input.GetKey (KeyCode.A) && Mathf.Abs (rigidbody2D.velocity.x) < maxSpeed) 
-		{
-			rigidbody2D.AddForce (new Vector2(-1, 0) * moveForce);
-			if(!facingLeft)
-				Flip();
-		}
+			if (Input.GetKey (KeyCode.A) && Mathf.Abs (rigidbody2D.velocity.x) < maxSpeed) 
+			{
+				rigidbody2D.AddForce (new Vector2(-1, 0) * moveForce);
+				if(!facingLeft)
+					Flip();
+			}
 
-		if (Mathf.Abs (rigidbody2D.velocity.x) > maxSpeed)
-			rigidbody2D.velocity = new Vector2 (Mathf.Sign (rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
+			if (Mathf.Abs (rigidbody2D.velocity.x) > maxSpeed)
+				rigidbody2D.velocity = new Vector2 (Mathf.Sign (rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
 
-		if(jump)
-		{
-			rigidbody2D.AddForce (Vector2.up*jumpForce);
+			if(jump)
+			{
+				rigidbody2D.AddForce (Vector2.up*jumpForce);
 
-			jump = false;
-		}
+				jump = false;
+			}
 
-		// punch
-		if (Input.GetKeyDown(KeyCode.J))
-		{
-			anim.Play ("punch");
+			// punch
+			if (Input.GetKeyDown(KeyCode.J))
+			{
+				anim.Play ("punch");
+			}
 		}
 
 	}
